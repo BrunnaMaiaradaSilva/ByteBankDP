@@ -11,15 +11,31 @@ namespace ByteBankDP
     {
         static void Main(string[] args)
         {
-            Funcionario brunna = new Funcionario(1);
+            GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
+
+            Funcionario brunna = new Funcionario(4890,"445.654.789-25");
 
             brunna.Nome = "Brunna";
-            brunna.CPF = "445.654.789-25";
-            brunna.Salario = 4890;
+           
+            gerenciador.Registrar(brunna);
+
+            Diretor roberta = new Diretor(4890, "445.681.269-28");
+            roberta.Nome = "Roberta";
+
+            gerenciador.Registrar(roberta);
 
             Console.WriteLine(brunna.Nome);
-
             Console.WriteLine(brunna.GetBonificacao());
+
+            Console.WriteLine(roberta.Nome);
+            Console.WriteLine(roberta.GetBonificacao());
+
+            Console.WriteLine(gerenciador.GetTotalBonificacao());
+
+            brunna.AumentarSalário();
+            Console.WriteLine("Novo salário: " + brunna.Salario);
+
+            Console.WriteLine(Funcionario.TotalDeFuncionarios);
 
             Console.ReadLine();
         }

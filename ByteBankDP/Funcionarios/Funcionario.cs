@@ -8,23 +8,28 @@ namespace ByteBankDP.Funcionarios
 {
     public class Funcionario
     {
-        // 0 = funcionário
-        // 1 = diretor
-        private int _tipo;
-
-        public Funcionario(int tipo)
-        {
-            _tipo = tipo;
-        }
+        public static int TotalDeFuncionarios { get; private set; }
         public string Nome { get; set; }
-        public string CPF { get; set; }
-        public double Salario { get; set; }
+        public string CPF { get; private set; }
+        public double Salario { get; protected set; }
 
-        public double GetBonificacao()
+        public Funcionario(double salario, string cpf)
         {
-            if (_tipo == 1)
-                return Salario;
 
+            CPF = cpf;
+            Salario = salario;
+
+            TotalDeFuncionarios++;
+
+        }
+
+        public virtual void AumentarSalário()
+        {
+            Salario *= 1.1;
+        }
+
+        public virtual double GetBonificacao()
+        {
             return Salario * 0.10;
         }
 
