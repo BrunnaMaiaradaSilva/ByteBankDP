@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ByteBankDP.Funcionarios;
+using ByteBankDP.Sistemas;
 
 namespace ByteBankDP
 {
@@ -11,7 +12,9 @@ namespace ByteBankDP
     {
         static void Main(string[] args)
         {
-            CalcularBonificacao();
+            //CalcularBonificacao();
+
+            UsarSistema();
 
             Console.ReadLine();
         }
@@ -32,6 +35,21 @@ namespace ByteBankDP
 
             Console.WriteLine("Total de bonificações " + 
                 gerenciadorBonificacao.GetTotalBonificacao());
+        }
+
+        public static void UsarSistema()
+        {
+            SistemaInterno sistemaInterno = new SistemaInterno();
+            Diretor diretor = new Diretor(8000, "777.777.777-99");
+            diretor.Senha = "123";
+
+            sistemaInterno.Logar(diretor, "123");
+            sistemaInterno.Logar(diretor, "abc");
+
+            ParceiroComercial parceiro = new ParceiroComercial();
+            parceiro.Senha = "123";
+
+            sistemaInterno.Logar(parceiro, "123");
         }
     }
 }   
